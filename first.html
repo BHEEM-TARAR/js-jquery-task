@@ -12,10 +12,7 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="custom.css" />
-  </head>
+</head>
   <body>
     <div class="d-flex justify-content-center gap-3 mt-5">
       <!-- Buttons -->
@@ -50,161 +47,78 @@
     <hr />
 
     <!-- Modals -->
-    <div
-      class="modal fade"
-      id="Heading"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <!-- Heading Modal -->
+    <div class="modal fade" id="Heading" tabindex="-1" aria-labelledby="headingLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Heading</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+            <h1 class="modal-title fs-5" id="headingLabel">Heading</h1>
           </div>
-          <div class="modal-body">
-            <form method="post" class="heading-form">
-              <div class="modal-body">
-                <label>Enter Heading</label>
-                <input
-                  type="text"
-                  name="heading-input"
-                  class="form-control input-heading"
-                  id="main-header"
-                  value=""
-                  placeholder="Enter Heading"
-                />
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="submit" class="btn btn-primary" id="heading-btn">
-                  Save changes
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="subheading"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <!-- Subheading Modal -->
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Subheading</h1>
-          </div>
-          <form method="post" class="subheading-form">
+          <form method="post" id="heading-form">
             <div class="modal-body">
               <label>Enter Heading</label>
-              <select
-                class="form-control heading-select"
-                name="select-heading"
-                aria-label="Default select example"
-                id="main-header2"
-              >
-                <option selected>---Select Heading---</option>
-              </select>
-              <label>Enter Subheading</label>
-              <input
-                type="text"
-                id="sub-input"
-                class="form-control input-subheading"
-                value=""
-                placeholder="Enter Subheading"
-              />
+              <input type="text" class="form-control input-heading" value="" placeholder="Enter Heading">
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="submit" class="btn btn-primary" id="subheading-btn">
-                Save changes
-              </button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" id="heading-btn">Save changes</button>
             </div>
           </form>
         </div>
       </div>
     </div>
-
-    <div
-      class="modal fade"
-      id="form"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <!-- Form Modal -->
-      <div class="modal-dialog modal-dialog-scrollable">
+  
+    <!-- Modal second 2 -->
+    <div class="modal fade" id="subheading" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Subheading Title</h1>
           </div>
-          <div class="modal-body">
-            <form method="post" class="form3">
-              <div class="mb-3">
-                <label for="main-header3" class="col-form-label"
-                  >Heading:</label
-                >
-                <select
-                  type="text"
-                  class="form-control form-select"
-                  id="main-header3"
-                  name="header-select"
-                >
-                  <option selected>--Choose Header--</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="sub-heading2" class="col-form-label"
-                  >Subheading:</label
-                >
-                <select
-                  type="text"
-                  class="form-control form-select"
-                  id="sub-heading2"
-                  name="sub-select"
-                >
-                  <option selected>...Choose Subhead</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label"
-                  >Input Type:</label
-                >
-                <select class="form-select">
-                  <option value="" disabled selected>
-                    --Choose an input-type--
-                  </option>
+          <form method="post" id="subheading-form">
+            <div class="modal-body">
+              <label>Enter Heading</label>
+              <select class="form-control heading-select" aria-label="Default select example" id="sub-select"
+                name="heading-form">
+                <option selected></option>
+              </select>
+              <label>Enter Subheading</label>
+              <input type="text" id="sub-input" class="form-control input-subheading" value=""
+                placeholder="Enter Subheading">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" id="subheading-btn">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal third for modal-->
+    <div class="modal fade" id="form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Form</h1>
+          </div>
+          <form id="sample-Form" method="post">
+            <div class="modal-body">
+              <label>Heading</label>
+              <select class="form-control mt-2" aria-label="Default select example" id="selectfield"
+                name="sub-heading-form">
+                <option value="" disabled selected>Choose a header</option>
+              </select>
+            </div>
+            <div class="modal-body">
+              <label>Subheading</label>
+              <select class="form-control mt-2" aria-label="Default select example" id="subheadselect"
+                name="sub-heading2">
+                <option value="" disabled selected>Choose a header</option>
+              </select>
+              <div class="modal-body">
+                <label>Select Fields</label>
+                <select class="form-control mt-2" id="input" aria-label="Default select example" id="fields1">
+                  <option value="" disabled selected>Choose an input-type</option>
                   <option value="text">Text</option>
                   <option value="textarea">Textarea</option>
                   <option value="file">File</option>
@@ -213,117 +127,46 @@
                   <option value="submit">Submit</option>
                   <option value="checkbox">Checkbox</option>
                 </select>
-              </div>
-              <div class="mb-3">
-                <label for="label" class="col-form-label">Label:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="label"
-                  placeholder="Label"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="type" class="col-form-label">Type:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="type"
-                  placeholder="Type"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="name" class="col-form-label">Name:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="name"
-                  placeholder="Enter a name"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="class" class="col-form-label">Class:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="class"
-                  placeholder="Enter the class"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="value" class="col-form-label">Value:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="value"
-                  placeholder="Enter the value"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="placeholder" class="col-form-label"
-                  >Placeholder:</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="placeholder"
-                  placeholder="Enter the placeholder"
-                />
-              </div>
-              <div class="form-group">
-                <label for="options" class="col-form-label">Options:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="options"
-                  name="options"
-                  placeholder="Enter options (comma separated)"
-                />
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault1"
-                />
-                <label class="form-check-label" for="flexRadioDefault1"
-                  >Readonly</label
-                >
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault2"
-                  checked
-                />
-                <label class="form-check-label" for="flexRadioDefault2"
-                  >Disable</label
-                >
-              </div>
-              <div class="modal-footer justify-content-start">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="submit" class="btn btn-primary" id="form-button">
-                  Submit
-                </button>
+                <div class="form-group">
+                  <label for="name" class="col-form-label">Name:</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Enter a name">
+                </div>
+                <div class="form-group">
+                  <label for="class" class="col-form-label">Class:</label>
+                  <input type="text" class="form-control" id="class" name="class" placeholder="Enter the class">
+                </div>
+                <div class="form-group">
+                  <label for="value" class="col-form-label">Value:</label>
+                  <input type="text" class="form-control" id="value" name="value" placeholder="Enter the value">
+                </div>
+                <div class="form-group">
+                  <label for="placeholder" class="col-form-label">Placeholder:</label>
+                  <input type="text" class="form-control" id="placeholder" name="placeholder"
+                    placeholder="Enter the placeholder">
+                </div>
+                <div class="form-group">
+                  <label for="options" class="col-form-label">Options:</label>
+                  <input type="text" class="form-control" id="options" name="options"
+                    placeholder="Enter options (comma separated)">
+                </div>
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="readonly" name="selectoption">
+                  <label class="form-check-label" for="readonly"> Readonly</label>
+                </div>
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" id="disabled" name="selectoption">
+                  <label class="form-check-label" for="disabled"> Disable</label>
+                </div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </form>
-          </div>
+            </div>
+          
         </div>
       </div>
     </div>
-
-    <main>
-      <div id="field-container"></div>
-    </main>
+  <main></main>
 
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

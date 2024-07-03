@@ -1,126 +1,164 @@
-$(document).ready(function() {
-    // Append value in the first heading
-    $(".heading-form").on('submit', function(e) {
-        e.preventDefault();
-        // Hide the first modal
-        $('#Heading').modal('hide');
-        let heading = $(".input-heading").val();
-        let headingId = `heading-${Math.random().toString(36).substring(2, 9)}`; // ID generate 
-        if (heading) {
-            $('main').append(`<div id="${headingId}-container" class="heading-container">
-                <h1 id="${headingId}">${heading}
-                    <button class="close-heading" data-heading-id="${headingId}">x</button>
-                </h1>
-            </div>`);
+$(document).ready(function () {
+   // Load data from localStorage on page load
+    loadDataFromLocalStorage();
 
+   // Save new heading
+   $('#heading-form').on('submit', function (e) {
+       e.preventDefault();
+       var newHeading = $('.input-heading').val().trim();
+       if (newHeading) {
+           $('#Heading').modal('hide');
+           $('#selectfield').append(`<option>${newHeading}</option>`);
+           $('#sub-select').append(`<option>${newHeading}</option>`);
 
-        }
-        // Append value in subheading option
-        $('select[name=select-heading]').append(`<option value="${headingId}">${heading}</option>`);
-        $('select[name=header-select]').append(`<option value="${headingId}">${heading}</option>`);
-        $('.heading-form').trigger('reset');
-    });
-
-    // Subheading value
-    $(".subheading-form").on('submit', function(e) {
-        e.preventDefault();
-        // Hide the second modal
-        $('#subheading').modal('hide');
-        let subheading = $(".input-subheading").val();
-        let headingId = $('select[name=select-heading]').val();
-        let subheadingId = `subheading-${Math.random().toString(36).substring(2, 9)}`; // ID generate 
-
-        if (headingId && subheading) {
-            $(`#${headingId}-container`).append(`
-                <div id="${subheadingId}-container" class="draggable-container" draggable="true">
-                    <h4 id="${subheadingId}">${subheading}</h4>
-                </div>
-            `);
-            $('select[name=sub-select]').append(`<option data-heading="${headingId}" value="${subheadingId}">${subheading}</option>`);
-            $('.subheading-form').trigger('reset');
-        }
-    });
-
-    // Form 3 behavior
-    $('#main-header3').on('change', function() {
-        let selectedHeadingId = $(this).val();
-        let subSelect = $('#recipient-name'); // Assuming 'recipient-name' is the sub-select dropdown
-        subSelect.html('<option selected>...choose subhead</option>'); // Reset subhead options
-
-        // Populate sub-select options based on the selected heading
-        $(`option[data-heading="${selectedHeadingId}"]`).each(function() {
-            subSelect.append(`<option value="${$(this).val()}">${$(this).text()}</option>`);
-        });
-    });
-
-  // form3
-        
-    $(".form3").on('submit', function(e) {
-        e.preventDefault();
-        $('#form').modal('hide')
-
-        let headingId = $("#main-header3").val();
-        let subheadingId = $("#recipient-name").val();
-
-        if (headingId && subheadingId) {
-            let elementType = $("#input-type").val();
-            let name = $("#name").val();
-            let label = $("#label").val();
-            let type = $("#type").val();
-            let value = $("#value").val();
-            let placeholder = $("#placeholder").val();
-            let options = $("#options").val();
-            let readonly = $("#flexRadioDefault1").prop('checked');
-            let disable = $("#flexRadioDefault2").prop('checked');
-
-            let formdata = {
-                "name": name,
-                "label": label,
-                "type": type,
-                "value": value,
-                "placeholder": placeholder,
-                "options": options,
-                "readonly": readonly,
-                "disable": disable,
-            };
-            console.log(forelement,'jjjjjjjjjjjjjjjjjjjjjjjjjjj');
-
-            let formElement;
-            switch (elementType) {
-                case 'text':
-                    formElement = `<input type="${elementType}" class="form-control" id="${name}" name="${name}" placeholder="${placeholder}" value="${value}" ${readonly ? 'readonly' : ''} ${disable ? 'disabled' : ''}>`;
-                    break;
-                case 'textarea':
-                    formElement = `<textarea class="form-control" id="${name}" name="${name}" placeholder="${placeholder}" ${readonly ? 'readonly' : ''} ${disable ? 'disabled' : ''}>${value}</textarea>`;
-                    break;
-                case 'file':
-                    formElement = `<input type="file" class="form-control" id="${name}" name="${name}" ${readonly ? 'readonly' : ''} ${disable ? 'disabled' : ''}>`;
-                    break;
-                case 'select':
-                    let optionList = options.split(',').map(option => `<option>${option.trim()}</option>`).join('');
-                    formElement = `<select class="form-control" id="${name}" name="${name}" ${readonly ? 'readonly' : ''} ${disable ? 'disabled' : ''}>${optionList}</select>`;
-                    break;
-                case 'submit':
-                    formElement = `<button type="submit" class="btn btn-primary">${label}</button>`;
-                    break;
-                case 'checkbox':
-                    formElement = `<input type="checkbox" id="${name}" name="${name}" ${readonly ? 'readonly' : ''} ${disable ? 'disabled' : ''}> <label for="${name}">${label}</label>`;
-                    break;
-                default:
-                    formElement = `<p>Unsupported input type.</p>`;
-                    break;
-            
-             }
-             if (headingId && subheadingId) {
-                $({subheadingId}-container).append(`
-                  <div class="field-container" draggable="true">
-                    ${newField}
-                    <button type="button" class="close2" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  </div>`);
-             }
-             
-        };
-
-    });
-});
+           // Append new heading to the list
+           $('main').append(`
+               <div class="heading-container">
+                   <h1>${newHeading}
+                   <button type="button" class="close1" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                   </h1>
+                   <div class="subheading-list"></div>
+               </div>
+           `);
+           $('.input-heading').val('');
     
+       
+      
+      };
+   })
+   
+   $('main').on('click', '.close1', function() {
+       $(this).closest('.heading-container').remove()
+       saveDataToLocalStorage(); // Save data to localStorage
+       $('#Heading').trigger('reset');
+      });
+
+   // Save new subheading
+   $('#subheading-form').on('submit', function (e) {
+       e.preventDefault();
+       var selectedHeading = $('#sub-select').val();
+       var newSubHeading = $('#sub-input').val().trim();
+       if (selectedHeading && newSubHeading) {
+           $('#subheading').modal('hide');
+           var headingContainer = $(`.heading-container:has(h1:contains('${selectedHeading}'))`);
+           headingContainer.find('.subheading-list').append(`
+               <div class="subheading-container">
+                   <h2>${newSubHeading}
+                       <button type="button" class="close-heading-btn" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                       </button>
+                   </h2>
+                   <div class="form-list"></div>
+               </div>
+           `);
+           $('#subheadselect').append(`<option>${newSubHeading}</option>`);
+           saveDataToLocalStorage(); // Save data to localStorage
+
+           $('#sub-input').val('');
+           $('#subheading-form').trigger('reset');
+       }
+   });
+
+   // Remove subheading
+   $('main').on('click', '.close-heading-btn', function() {
+       $(this).closest('.subheading-container').remove();
+       //saveDataToLocalStorage(); // Save data to localStorage
+   });
+
+   // Save new form field
+   $('#sample-Form').on('submit', function (e) {
+       e.preventDefault();
+       var selectHeading = $('#selectfield').val();
+       var selectSubHeading = $('#subheadselect').val();
+       var inputType = $('#input').val();
+       var nameInput = $('#name').val();
+       var classInput = $('#class').val();
+       var valueInput = $('#value').val();
+       var placeholderInput = $('#placeholder').val();
+       var optionInput = $('#options').val();
+       var isReadonly = $('#readonly').is(':checked');
+       var isDisabled = $('#disabled').is(':checked');
+       var inputTag = '';
+
+          switch (inputType) {
+           case 'text':
+           case 'email':
+           case 'file':
+               inputTag = `<input type="${inputType}" id="${nameInput}" class="${classInput}" name="${nameInput}" value="${valueInput}" placeholder="${placeholderInput}" ${isReadonly ? 'readonly' : ''} ${isDisabled ? 'disabled' : ''}>`;
+               break;
+           case 'textarea':
+               inputTag = `<textarea id="${nameInput}" class="${classInput}" name="${nameInput}" placeholder="${placeholderInput}" ${isReadonly ? 'readonly' : ''} ${isDisabled ? 'disabled' : ''}>${valueInput}</textarea>`;
+               break;
+           case 'checkbox':
+           case 'radio':
+               optionInput.split(',').forEach(option => {
+                   inputTag += `<label><input type="${inputType}" id="${option.trim()}" class="${classInput}" name="${nameInput}" value="${option.trim()}" ${isReadonly ? 'readonly' : ''} ${isDisabled ? 'disabled' : ''}> ${option.trim()}</label>`;
+               });
+               break;
+           case 'select':
+               inputTag = `<select id="${nameInput}" class="${classInput}" name="${nameInput}" ${isReadonly ? 'readonly' : ''} ${isDisabled ? 'disabled' : ''}>`;
+               optionInput.split(',').forEach(option => {
+                   inputTag += `<option value="${option.trim()}">${option.trim()}</option>`;
+               });
+               inputTag += `</select>`;
+               break;
+           case 'submit':
+               inputTag = `<input type="submit" id="${nameInput}" class="${classInput}" value="${valueInput}">`;
+               break;
+       }
+
+       var subHeadingContainer = $(`.heading-container:has(h1:contains('${selectHeading}')) .subheading-container:has(h2:contains('${selectSubHeading}')) .form-list`);
+       subHeadingContainer.append(inputTag);
+
+      $('#form').modal('hide');
+       saveDataToLocalStorage(); // Save data to localStorage
+       $('#sample-Form')[0].reset();
+   });
+
+  // Update subheading options based on selected heading
+   $('#selectfield').change(function () {
+       var selectedHeading = $(this).val();
+       var subHeadings = $(`.heading-container:has(h1:contains('${selectedHeading}')) .subheading-container h2`);
+       $('#subheadselect').empty().append('<option value="" disabled selected>Choose a sub-heading</option>');
+       subHeadings.each(function () {
+           var subHeadingText = $(this).text();
+           $('#subheadselect').append(`<option>${subHeadingText}</option>`);
+       });
+   });
+
+   function saveDataToLocalStorage() {
+       var data = {};
+       $('.heading-container').each(function () {
+           var heading = $(this).find('h1').text().trim();
+           var subHeadings = {};
+           $(this).find('.subheading-container').each(function () {
+               var subHeading = $(this).find('h2').text().trim();
+               var formElements = $(this).find('.form-list').html();
+               subHeadings[subHeading] = formElements;
+           });
+           data[heading] = subHeadings;
+
+       });
+       localStorage.setItem('formData', JSON.stringify(data));
+   }
+
+   function loadDataFromLocalStorage() {
+       var data = JSON.parse(localStorage.getItem('formData'));
+       if (data) {
+           for (var heading in data) {
+               var headingContainer = $(`<div class="heading-container"><h1>${heading}<button type="button" class="close1" aria-label="Close"><span aria-hidden="true">&times;</span></button></h1><div class="subheading-list"></div></div>`);
+               $('#selectfield').append(`<option>${heading}</option>`);
+               $('#sub-select').append(`<option>${heading}</option>`);
+               for (var subHeading in data[heading]) {
+                   var subHeadingContainer = $(`<div class="subheading-container"><h2>${subHeading}<button type="button" class="close-heading-btn" aria-label="Close"><span aria-hidden="true">&times;</span></button></h2><div class="form-list">${data[heading][subHeading]}</div></div>`);
+                   headingContainer.find('.subheading-list').append(subHeadingContainer);
+                   $('#subheadselect').append(`<option>${subHeading}</option>`);
+               }
+               $('main').append(headingContainer);
+           }
+       }
+   }
+});
+
+
+
