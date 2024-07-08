@@ -12,8 +12,9 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-</head>
-  <body>
+    <!-- <link rel="stylesheet" href="first.css"/>  -->
+    </head>
+   <body>
     <div class="d-flex justify-content-center gap-3 mt-5">
       <!-- Buttons -->
       <button
@@ -52,6 +53,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="headingLabel">Heading</h1>
+
           </div>
           <form method="post" id="heading-form">
             <div class="modal-body">
@@ -120,12 +122,16 @@
                 <select class="form-control mt-2" id="input" aria-label="Default select example" id="fields1">
                   <option value="" disabled selected>Choose an input-type</option>
                   <option value="text">Text</option>
+                  <option value="select">select</option>
+                      
                   <option value="textarea">Textarea</option>
                   <option value="file">File</option>
-                  <option value="email">Email</option>
+                   <option value="email">Email</option>
                   <option value="option">Option</option>
                   <option value="submit">Submit</option>
                   <option value="checkbox">Checkbox</option>
+                  <option value="Radio">Radio</option>
+                  
                 </select>
                 <div class="form-group">
                   <label for="name" class="col-form-label">Name:</label>
@@ -166,7 +172,8 @@
         </div>
       </div>
     </div>
-  <main></main>
+  <main>
+  </main>
 
     <!-- JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -180,6 +187,7 @@
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="custom.js"></script>
   </body>
 </html>
